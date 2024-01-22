@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality Assessment Test</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        #quiz-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <h2 style="text-align: center;">Personality Assessment Test</h2>
+
+    <div class="question">
+        <p>1. How would you describe yourself?</p>
+        <input type="radio" name="q1" value="1"> Introverted
+        <input type="radio" name="q1" value="2"> Extroverted
+    </div>
+
+    <div class="question">
+        <p>2. What is your preferred way of spending free time?</p>
+        <input type="radio" name="q2" value="1"> Reading a book
+        <input type="radio" name="q2" value="2"> Hanging out with friends
+    </div>
+
+    <div class="question">
+        <p>3. How do you handle stress?</p>
+        <input type="radio" name="q3" value="1"> Keep to yourself
+        <input type="radio" name="q3" value="2"> Seek support from others
+    </div>
+
+    <div class="question">
+        <p>4. What type of movies do you enjoy?</p>
+        <input type="radio" name="q4" value="1"> Drama or documentary
+        <input type="radio" name="q4" value="2"> Action or comedy
+    </div>
+
+    <div class="question">
+        <p>5. How do you approach problem-solving?</p>
+        <input type="radio" name="q5" value="1"> Analytical and logical
+        <input type="radio" name="q5" value="2"> Intuitive and creative
+    </div>
+
+    <div class="question">
+        <p>6. What's your communication style?</p>
+        <input type="radio" name="q6" value="1"> Direct and straightforward
+        <input type="radio" name="q6" value="2"> Diplomatic and tactful
+    </div>
+
+    <div class="question">
+        <p>7. How do you handle change?</p>
+        <input type="radio" name="q7" value="1"> Embrace it
+        <input type="radio" name="q7" value="2"> Prefer stability
+    </div>
+
+    <div class="question">
+        <p>8. What motivates you more?</p>
+        <input type="radio" name="q8" value="1"> Recognition and rewards
+        <input type="radio" name="q8" value="2"> Personal satisfaction and growth
+    </div>
+
+    <div class="question">
+        <p>9. Choose a vacation preference:</p>
+        <input type="radio" name="q9" value="1"> Relaxing on the beach
+        <input type="radio" name="q9" value="2"> Exploring new cities
+    </div>
+
+    <div class="question">
+        <p>10. How do you deal with criticism?</p>
+        <input type="radio" name="q10" value="1"> Take it constructively
+        <input type="radio" name="q10" value="2"> Feel defensive
+    </div>
+
+    <div class="question">
+        <p>11. What's your work style?</p>
+        <input type="radio" name="q11" value="1"> Organized and structured
+        <input type="radio" name="q11" value="2"> Flexible and adaptable
+    </div>
+
+    <div class="question">
+        <p>12. How do you express yourself?</p>
+        <input type="radio" name="q12" value="1"> Through words
+        <input type="radio" name="q12" value="2"> Through actions
+    </div>
+
+    <div class="question">
+        <p>13. What's your attitude towards rules?</p>
+        <input type="radio" name="q13" value="1"> Follow them strictly
+        <input type="radio" name="q13" value="2"> Sometimes bend or break them
+    </div>
+
+    <div class="question">
+        <p>14. How do you handle success?</p>
+        <input type="radio" name="q14" value="1"> Stay humble and grounded
+        <input type="radio" name="q14" value="2"> Celebrate and share achievements
+    </div>
+
+    <div class="question">
+        <p>15. What's your approach to teamwork?</p>
+        <input type="radio" name="q15" value="1"> Prefer working independently
+        <input type="radio" name="q15" value="2"> Enjoy collaborating with others
+    </div>
+
+    <!-- Repeat for other questions -->
+
+    <button onclick="calculateResult()">Submit</button>
+
+    <div id="result"></div>
+</div>
+
+<footer>
+    Design by Garbhit
+</footer>
+
+<script>
+    function calculateResult() {
+        var resultContainer = document.getElementById('result');
+        var totalScore = 0;
+        var unanswered = false;
+
+        // Sum up the scores for each question
+        for (let i = 1; i <= 15; i++) {
+            var selectedValue = document.querySelector('input[name="q' + i + '"]:checked');
+            if (selectedValue) {
+                totalScore += parseInt(selectedValue.value);
+            } else {
+                unanswered = true;
+            }
+        }
+
+        // Check if any question is unanswered
+        if (unanswered) {
+            resultContainer.innerHTML = '<p style="color: red;">Please answer all questions before submitting.</p>';
+        } else {
+            // Determine the personality type based on the total score
+            var personalityType = totalScore >= 50 ? 'Type A' : 'Type B';
+
+            // Display the result overview
+            resultContainer.innerHTML = '<p>Your Personality Type: ' + personalityType + '</p>';
+            resultContainer.innerHTML += '<p>Result Overview:</p>';
+            
+            if (personalityType === 'Type A') {
+                resultContainer.innerHTML += '<p>You exhibit characteristics associated with Type A personalities. Type A individuals are often ambitious, competitive, and time-conscious. They may be prone to stress but are also high achievers.</p>';
+            } else {
+                resultContainer.innerHTML += '<p>You exhibit characteristics associated with Type B personalities. Type B individuals are generally relaxed, creative, and enjoy a laid-back approach to life. They tend to be less stressed and more tolerant of others.</p>';
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
