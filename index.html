@@ -151,8 +151,7 @@
         <input type="radio" name="q15" value="2"> Enjoy collaborating with others
     </div>
 
-    <!-- Repeat for other questions -->
-
+ 
     <button onclick="calculateResult()">Submit</button>
 
     <div id="result"></div>
@@ -169,7 +168,7 @@
         var totalScore = 0;
         var unanswered = false;
 
-        // Sum up the scores for each question
+        
         for (let i = 1; i <= 15; i++) {
             var selectedValue = document.querySelector('input[name="q' + i + '"]:checked');
             if (selectedValue) {
@@ -186,7 +185,7 @@
             // Determine the personality type based on the total score
             var personalityType = totalScore >= 50 ? 'Type A' : 'Type B';
 
-            // Display the result overview
+            
             resultContainer.innerHTML = '<p>Your Personality Type: ' + personalityType + '</p>';
             resultContainer.innerHTML += '<p>Result Overview:</p>';
             
